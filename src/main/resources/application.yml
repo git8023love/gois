@@ -1,0 +1,43 @@
+spring:
+  profiles:
+    active: dev
+  ########################################################
+  ###THYMELEAF (ThymeleafAutoConfiguration)
+  ########################################################
+
+
+  ########################################################
+  ###FREEMARKER (FreeMarkerAutoConfiguration)
+  ########################################################
+  thymeleaf:
+    cache: false
+    mode: HTML5
+  ########################################################
+  ######## 邮件 设置
+  ########################################################
+
+debug: true
+
+#######################################################
+######MYBATIS mybatis基本配置；
+#######################################################
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.jeff.gois.core.bean
+
+#######################################################
+###### pagehelper分页插件配置
+#######################################################
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params:
+    count: countSql
+
+logging:
+  level:
+    com:
+      jeff:
+        mall:
+          dao: debug

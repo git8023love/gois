@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeff.gois.core.dao.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.jeff.gois.core.bean.Goods">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goodsno" jdbcType="VARCHAR" property="goodsno" />
+    <result column="goodscord" jdbcType="VARCHAR" property="goodscord" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="price" jdbcType="DOUBLE" property="price" />
+    <result column="activeprice" jdbcType="DOUBLE" property="activeprice" />
+    <result column="spec" jdbcType="VARCHAR" property="spec" />
+    <result column="supplyid" jdbcType="INTEGER" property="supplyid" />
+    <result column="btype" jdbcType="INTEGER" property="btype" />
+    <result column="mtype" jdbcType="INTEGER" property="mtype" />
+    <result column="stype" jdbcType="INTEGER" property="stype" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, goodsno, goodscord, name, price, activeprice, spec, supplyid, btype, mtype, stype, 
+    createtime, updatetime
+  </sql>
+
+  <select id="findGoodsList" parameterType="com.jeff.gois.core.bean.Goods" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from goods
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="com.jeff.gois.core.bean.Goods">
+    insert into goods (id, goodsno, goodscord, 
+      name, price, activeprice, 
+      spec, supplyid, btype, 
+      mtype, stype, createtime, 
+      updatetime)
+    values (#{id,jdbcType=INTEGER}, #{goodsno,jdbcType=VARCHAR}, #{goodscord,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, #{activeprice,jdbcType=DOUBLE}, 
+      #{spec,jdbcType=VARCHAR}, #{supplyid,jdbcType=INTEGER}, #{btype,jdbcType=INTEGER}, 
+      #{mtype,jdbcType=INTEGER}, #{stype,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="com.jeff.gois.core.bean.Goods">
+    insert into goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="goodsno != null">
+        goodsno,
+      </if>
+      <if test="goodscord != null">
+        goodscord,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="activeprice != null">
+        activeprice,
+      </if>
+      <if test="spec != null">
+        spec,
+      </if>
+      <if test="supplyid != null">
+        supplyid,
+      </if>
+      <if test="btype != null">
+        btype,
+      </if>
+      <if test="mtype != null">
+        mtype,
+      </if>
+      <if test="stype != null">
+        stype,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsno != null">
+        #{goodsno,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscord != null">
+        #{goodscord,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="activeprice != null">
+        #{activeprice,jdbcType=DOUBLE},
+      </if>
+      <if test="spec != null">
+        #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyid != null">
+        #{supplyid,jdbcType=INTEGER},
+      </if>
+      <if test="btype != null">
+        #{btype,jdbcType=INTEGER},
+      </if>
+      <if test="mtype != null">
+        #{mtype,jdbcType=INTEGER},
+      </if>
+      <if test="stype != null">
+        #{stype,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.jeff.gois.core.bean.Goods">
+    update goods
+    <set>
+      <if test="goodsno != null">
+        goodsno = #{goodsno,jdbcType=VARCHAR},
+      </if>
+      <if test="goodscord != null">
+        goodscord = #{goodscord,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="activeprice != null">
+        activeprice = #{activeprice,jdbcType=DOUBLE},
+      </if>
+      <if test="spec != null">
+        spec = #{spec,jdbcType=VARCHAR},
+      </if>
+      <if test="supplyid != null">
+        supplyid = #{supplyid,jdbcType=INTEGER},
+      </if>
+      <if test="btype != null">
+        btype = #{btype,jdbcType=INTEGER},
+      </if>
+      <if test="mtype != null">
+        mtype = #{mtype,jdbcType=INTEGER},
+      </if>
+      <if test="stype != null">
+        stype = #{stype,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="com.jeff.gois.core.bean.Goods">
+    update goods
+    set goodsno = #{goodsno,jdbcType=VARCHAR},
+      goodscord = #{goodscord,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      activeprice = #{activeprice,jdbcType=DOUBLE},
+      spec = #{spec,jdbcType=VARCHAR},
+      supplyid = #{supplyid,jdbcType=INTEGER},
+      btype = #{btype,jdbcType=INTEGER},
+      mtype = #{mtype,jdbcType=INTEGER},
+      stype = #{stype,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

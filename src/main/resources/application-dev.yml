@@ -1,0 +1,48 @@
+server:
+  port: 8888
+spring:
+  #######################################################
+  #####DATASOURCE （DataSource）数据源基本配置；
+  #######################################################
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/mall?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root1234
+    minIdle: 1
+    maxActive: 2
+    initialSize: 1
+    timeBetweenEvictionRunsMillis: 3000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'ZTM' FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+  ########################################################
+  ###REDIS (RedisProperties) redis基本配置；
+  ########################################################
+  redis:
+    database: 0
+    host: 192.168.1.190
+    port: 6379
+    pool:
+      max-idle: 8
+      min-idle: 0
+      max-active: 8
+      max-wait: 1
+########################################################
+######### 多数据源配置
+########################################################
+custom:
+  datasource:
+    names: ds1,ds2
+    ds1:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/dubbo?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root1234
+    ds2:
+      driver-class-name: com.mysql.jdbc.Driver
+      url: jdbc:mysql://127.0.0.1:3306/lashou_db?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root1234
